@@ -5,11 +5,11 @@ import (
 	"time"
 )
 
-type funcToLoop func()
+type FuncToLoop func()
 
 var wg sync.WaitGroup = sync.WaitGroup{}
 
-func funcWithForLoop(f funcToLoop, duration time.Duration) (ff funcToLoop) {
+func funcWithForLoop(f FuncToLoop, duration time.Duration) (ff FuncToLoop) {
 	wg.Add(1)
 	return func() {
 		for {
@@ -19,7 +19,7 @@ func funcWithForLoop(f funcToLoop, duration time.Duration) (ff funcToLoop) {
 	}
 }
 
-func GoroutineFuncs(fs []funcToLoop, sleepFor []time.Duration) {
+func GoroutineFuncs(fs []FuncToLoop, sleepFor []time.Duration) {
 	for i, f := range fs {
 		go funcWithForLoop(f, sleepFor[i])()
 	}

@@ -16,7 +16,7 @@ func two() {
 
 func TestRoutine(t *testing.T) {
 	defer wg.Wait()
-	funcs := []funcToLoop{one, two}
+	funcs := []FuncToLoop{one, two}
 	slps := []time.Duration{time.Second, time.Second * 2}
 	GoroutineFuncs(funcs, slps)
 }
