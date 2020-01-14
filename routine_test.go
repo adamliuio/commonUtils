@@ -14,7 +14,7 @@ func two() {
 	log.Println("two")
 }
 
-func TestRoutine(t *testing.T) {
+func _TestRoutine(t *testing.T) {
 	defer wg.Wait()
 	funcs := []FuncToLoop{one, two}
 	slps := []time.Duration{time.Second, time.Second * 2}
