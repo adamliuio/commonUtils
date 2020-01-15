@@ -7,16 +7,17 @@ import (
 )
 
 func one() {
-	log.Println("one")
+	log.Println("1")
 }
 
 func two() {
-	log.Println("two")
+	log.Println("1 + 1")
 }
 
-func _TestRoutine(t *testing.T) {
+func TestRoutine(t *testing.T) {
 	defer wg.Wait()
-	funcs := []FuncToLoop{one, two}
-	slps := []time.Duration{time.Second, time.Second * 2}
-	GoroutineFuncs(funcs, slps)
+	GoroutineFuncs([]FuncSchedule{
+		FuncSchedule{Function: one, SleepFor: time.Second},
+		FuncSchedule{Function: two, SleepFor: time.Second * 2},
+	})
 }
