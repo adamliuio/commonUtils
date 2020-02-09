@@ -1,7 +1,6 @@
 package commonUtils
 
 import (
-	"log"
 	"path/filepath"
 	"runtime"
 )
