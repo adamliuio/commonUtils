@@ -5,14 +5,20 @@ import (
 
 	"fmt"
 	"log"
+	"os"
 	"path/filepath"
 	"runtime"
 )
 
 func LoadEnv(envFilePath string) (env map[string]string) {
+	var err error
+	_, err = os.Stat(envFilePath)
+	if err != nil {
+		// if os.IsNotExist(err) {}
+		log.Fatalln(err)
+	}
 
 	// ::envFilePath:: root should be where you execute the program from
-	var err error
 	env, err = godotenv.Read(envFilePath)
 	if err != nil {
 		pc, file, line, _ := runtime.Caller(1) // using 1 to log where the error happened
