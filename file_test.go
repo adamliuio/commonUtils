@@ -4,8 +4,8 @@ import (
 	"testing"
 )
 
-func TestRoutine(t *testing.T) {
-	dir, file, line := GetFileAndLine()
+func _TestGetFileAndLine(t *testing.T) {
+	dir, file, line := GetDirFileLine()
 	t.Log("dir:", dir)
 	t.Log("file:", file)
 	t.Log("line:", line)
