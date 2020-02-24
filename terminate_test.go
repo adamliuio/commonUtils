@@ -10,7 +10,7 @@ func ok() {
 	log.Println("ok if this is printed means the shit worked.")
 }
 
-func _TestTerminate(t *testing.T) {
+func TestTerminate(t *testing.T) {
 	go func() {
 		CatchTerminationSignal(ok)
 	}()

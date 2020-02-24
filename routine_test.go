@@ -14,7 +14,7 @@ func two() {
 	log.Println("1 + 1")
 }
 
-func _TestRoutine(t *testing.T) {
+func TestRoutine(t *testing.T) {
 	defer wg.Wait()
 	GoroutineFuncs([]FuncSchedule{
 		FuncSchedule{Function: one, SleepFor: time.Second},

@@ -5,6 +5,6 @@ import (
 	"testing"
 )
 
-func _TestIsTesting(t *testing.T) {
+func TestIsTesting(t *testing.T) {
 	log.Println("IsTesting:", IsTesting())
 }

@@ -4,37 +4,30 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 )
 
 // Adam's notifications
-func NotifyMaster(strToSend, webhookURL string) {
+func NotifyMaster(strToSend, webhookURL string) (err error) {
 	values := map[string]string{"text": strToSend}
 	jsonValue, _ := json.Marshal(values)
 
-	res, err := http.Post(webhookURL, "application/json", bytes.NewBuffer(jsonValue))
+	_, err = http.Post(webhookURL, "application/json", bytes.NewBuffer(jsonValue))
 	if err != nil {
-		log.Println(err)
+		return
 	}
-	if Mode == "testing" {
-		log.Printf("res Status: %s\n", res.Status)
-		log.Printf("res: %+v\n", res)
-	}
+	return
 }
 
-func ServiceStatusUpdate(serviceName string, arr []map[string]string, webhookURL string) {
+func ServiceStatusUpdate(serviceName string, arr []map[string]string, webhookURL string) (err error) {
 	values := map[string]string{"blocks": blocksFormatter(serviceName, arr)}
 	jsonValue, _ := json.Marshal(values)
 
-	res, err := http.Post(webhookURL, "application/json", bytes.NewBuffer(jsonValue))
+	_, err = http.Post(webhookURL, "application/json", bytes.NewBuffer(jsonValue))
 	if err != nil {
-		log.Println(err)
+		return
 	}
-	if Mode == "testing" {
-		log.Printf("res Status: %s\n", res.Status)
-		log.Printf("res: %+v\n", res)
-	}
+	return
 }
 
 func blocksFormatter(serviceName string, arr []map[string]string) (msg string) {

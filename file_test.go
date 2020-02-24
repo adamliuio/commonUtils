@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func _TestGetFileAndLine(t *testing.T) {
+func TestGetFileAndLine(t *testing.T) {
 	dir, file, line := GetDirFileLine()
 	t.Log("dir:", dir)
 	t.Log("file:", file)

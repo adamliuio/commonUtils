@@ -1,7 +1,7 @@
 package commonUtils
 
 import (
-	"log"
+	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
@@ -11,7 +11,7 @@ type funcBeforeTerminate func()
 
 func Terminate(msg string) {
 	go func() {
-		log.Println("terminating", msg)
+		fmt.Println("terminating", msg)
 		syscall.Kill(syscall.Getpid(), syscall.SIGTERM)
 	}()
 }
@@ -28,15 +28,15 @@ func CatchTerminationSignal(f funcBeforeTerminate) {
 
 	go func() {
 		sig := <-sigs
-		log.Println("received signal:", sig)
+		fmt.Println("received signal:", sig)
 		// v.saveVars()
-		// log.Println("variables saved, ready to terminate.")
+		// fmt.Println("variables saved, ready to terminate.")
 		f()
 		done <- true
 	}()
 
-	log.Println("graceful termination is in place.")
+	fmt.Println("graceful termination is in place.")
 	<-done
-	log.Println("gracefully exiting.")
+	fmt.Println("gracefully exiting.")
 	os.Exit(123)
 }

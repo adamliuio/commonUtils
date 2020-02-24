@@ -2,7 +2,6 @@ package commonUtils
 
 import (
 	"io/ioutil"
-	"log"
 	"os"
 	"path/filepath"
 )
@@ -24,7 +23,7 @@ func ReadJsonFile(jsonPath string, createDirIfNotExist bool) (b []byte, err erro
 				os.MkdirAll(jsonDir, os.ModePerm)
 			}
 		} else {
-			log.Panicln(err)
+			return
 		}
 	} else {
 		var jsonFile *os.File
@@ -34,7 +33,7 @@ func ReadJsonFile(jsonPath string, createDirIfNotExist bool) (b []byte, err erro
 			if os.IsNotExist(err) {
 				return
 			} else {
-				log.Panicln(err)
+				return
 			}
 		}
 		b, _ = ioutil.ReadAll(jsonFile)
@@ -42,15 +41,16 @@ func ReadJsonFile(jsonPath string, createDirIfNotExist bool) (b []byte, err erro
 	return
 }
 
-func SaveToJson(b []byte, jsonPath string) {
+func SaveToJson(b []byte, jsonPath string) (err error) {
 	// quick use tip
 	// b, err := json.Marshal(*v)
 	// if err != nil {
 	// 	log.Panicln(err)
 	// }
 	// SaveToJson(b, varJsonPath)
-	err := ioutil.WriteFile(jsonPath, b, 0644)
+	err = ioutil.WriteFile(jsonPath, b, 0644)
 	if err != nil {
-		log.Panicln(err)
+		return
 	}
+	return
 }

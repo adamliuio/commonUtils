@@ -5,11 +5,11 @@ import (
 	"testing"
 )
 
-func _TestLogError(t *testing.T) {
+func TestLogError(t *testing.T) {
 	var err = errors.New("damn")
 	LogError(err)
 }
 
-func _TestLogString(t *testing.T) {
+func TestLogString(t *testing.T) {
 	LogString("damn err")
 }

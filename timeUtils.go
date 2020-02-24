@@ -1,14 +1,14 @@
 package commonUtils
 
 import (
-	"log"
 	"time"
 )
 
-func TimeStringToUnix(ts string) (unix int64) {
-	t, err := time.Parse(time.RFC3339, ts)
+func TimeStringToUnix(ts string) (unix int64, err error) {
+	var t time.Time
+	t, err = time.Parse(time.RFC3339, ts)
 	if err != nil {
-		log.Panicln(err)
+		return
 	}
 	unix = t.Unix()
 	return
@@ -20,11 +20,10 @@ func UnixTimestampToString(unix int64) (ts string) {
 	return
 }
 
-func TimeStringToTime(ts string) (t time.Time) {
-	var err error
+func TimeStringToTime(ts string) (t time.Time, err error) {
 	t, err = time.Parse(time.RFC3339, ts)
 	if err != nil {
-		log.Panicln(err)
+		return
 	}
 	return
 }
