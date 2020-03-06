@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestLoadEnv(t *testing.T) {
+func _TestLoadEnv(t *testing.T) {
 	env, err := LoadEnv(".env")
 	if err != nil {
 		return
@@ -13,7 +13,7 @@ func TestLoadEnv(t *testing.T) {
 	_ = env
 }
 
-func TestLoadEnvVar(t *testing.T) {
+func _TestLoadEnvVar(t *testing.T) {
 	ok, err := LoadEnvVar(".env", "TWO")
 	if err != nil {
 		return

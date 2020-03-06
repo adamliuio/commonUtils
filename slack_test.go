@@ -6,7 +6,7 @@ import (
 
 var url string = ""
 
-func TestServiceStatusUpdate(t *testing.T) {
+func _TestServiceStatusUpdate(t *testing.T) {
 	a := map[string]string{}
 	a["title"] = "this is a title"
 	a["value"] = "and here's the value"
@@ -16,6 +16,6 @@ func TestServiceStatusUpdate(t *testing.T) {
 	ServiceStatusUpdate("Useful-Tools", arr, url)
 }
 
-func TestNotifyMaster(t *testing.T) {
+func _TestNotifyMaster(t *testing.T) {
 	NotifyMaster("god damn!", url)
 }
